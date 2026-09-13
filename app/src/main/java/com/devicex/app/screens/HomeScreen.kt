@@ -1,0 +1,125 @@
+package com.devicex.app.screens
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.devicex.app.R
+import com.devicex.app.components.DeviceXCard
+import com.devicex.app.services.BatteryInfoService
+import com.devicex.app.services.DeviceInfoService
+import com.devicex.app.services.MemoryInfoService
+import com.devicex.app.services.StorageInfoService
+import com.devicex.app.utils.formatBytes
+
+@Composable
+fun HomeScreen() {
+    val context = LocalContext.current
+    val memoryService = remember { MemoryInfoService(context) }
+    val storageService = remember { StorageInfoService() }
+    val batteryService = remember { BatteryInfoService(context) }
+
+    val memoryInfo = remember { memoryService.getMemoryInfo() }
+    val storageInfo = remember { storageService.getStorageInfo() }
+    val batteryPercent = remember { batteryService.getBatteryPercent() }
+
+    val sections = listOf(
+        R.string.section_device,
+        R.string.section_cpu,
+        R.string.section_ram,
+        R.string.section_storage,
+        R.string.section_battery,
+        R.string.section_display,
+        R.string.section_gpu,
+        R.string.section_sensors,
+        R.string.section_camera,
+        R.string.section_network,
+        R.string.section_audio,
+        R.string.section_hardware,
+        R.string.section_tests
+    )
+
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF0A0C14)),
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        item(span = { androidx.compose.foundation.lazy.grid.GridItemSpan(2) }) {
+            Text(
+                text = "DeviceX",
+                color = Color.White,
+                fontSize = 26.sp,
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier.padding(bottom = 12.dp)
+            )
+        }
+
+        item(span = { androidx.compose.foundation.lazy.grid.GridItemSpan(2) }) {
+            DeviceXCard(modifier = Modifier.fillMaxWidth()) {
+                SummaryRow(stringResource(R.string.home_device_model), DeviceInfoService.getModel())
+                SummaryRow(stringResource(R.string.home_android_version), DeviceInfoService.getAndroidVersion())
+                SummaryRow(stringResource(R.string.home_ram), formatBytes(memoryInfo.totalBytes))
+                SummaryRow(stringResource(R.string.home_storage), formatBytes(storageInfo.totalBytes))
+                SummaryRow(
+                    stringResource(R.string.home_battery),
+                    if (batteryPercent >= 0) "$batteryPercent%" else "Not available"
+                )
+            }
+        }
+
+        item(span = { androidx.compose.foundation.lazy.grid.GridItemSpan(2) }) {
+            Text(
+                text = stringResource(R.string.home_sections_title),
+                color = Color(0xFF8A94A8),
+                fontSize = 14.sp,
+                modifier = Modifier.padding(top = 8.dp, bottom = 4.dp)
+            )
+        }
+
+        items(sections) { sectionRes ->
+            DeviceXCard(modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    text = stringResource(sectionRes),
+                    color = Color.White,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Medium
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun SummaryRow(label: String, value: String) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 6.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(text = label, color = Color(0xFF8A94A8), fontSize = 14.sp)
+        Text(text = value, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Medium)
+    }
+}

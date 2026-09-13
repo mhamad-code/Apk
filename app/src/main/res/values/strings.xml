@@ -3,4 +3,25 @@
     <string name="app_name">DeviceX</string>
     <string name="developer_name">محمد حمرة</string>
     <string name="version_label">الإصدار %1$s</string>
+
+    <string name="home_device_model">الموديل</string>
+    <string name="home_android_version">نسخة أندرويد</string>
+    <string name="home_ram">الرام</string>
+    <string name="home_storage">التخزين</string>
+    <string name="home_battery">البطارية</string>
+    <string name="home_sections_title">الأقسام</string>
+
+    <string name="section_device">Device</string>
+    <string name="section_cpu">CPU</string>
+    <string name="section_ram">RAM</string>
+    <string name="section_storage">Storage</string>
+    <string name="section_battery">Battery</string>
+    <string name="section_display">Display</string>
+    <string name="section_gpu">GPU</string>
+    <string name="section_sensors">Sensors</string>
+    <string name="section_camera">Camera</string>
+    <string name="section_network">Network</string>
+    <string name="section_audio">Audio</string>
+    <string name="section_hardware">Hardware</string>
+    <string name="section_tests">Tests</string>
 </resources>

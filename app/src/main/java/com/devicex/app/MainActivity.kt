@@ -80,7 +80,7 @@ fun DeviceXApp() {
     if (showSplash) {
         SplashScreen()
     } else {
-        HomePlaceholder()
+        com.devicex.app.screens.HomeScreen()
     }
 }
 
@@ -192,20 +192,5 @@ private fun StarField(modifier: Modifier = Modifier) {
                 center = Offset(x, y)
             )
         }
-    }
-}
-
-@Composable
-fun HomePlaceholder() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "DeviceX",
-            color = Color.White,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Medium
-        )
     }
 }

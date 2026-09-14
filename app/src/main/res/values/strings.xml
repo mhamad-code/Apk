@@ -3,6 +3,7 @@
     <string name="app_name">DeviceX</string>
     <string name="developer_name">محمد حمرة</string>
     <string name="version_label">الإصدار %1$s</string>
+    <string name="back">رجوع</string>
 
     <string name="home_device_model">الموديل</string>
     <string name="home_android_version">نسخة أندرويد</string>
@@ -24,4 +25,13 @@
     <string name="section_audio">Audio</string>
     <string name="section_hardware">Hardware</string>
     <string name="section_tests">Tests</string>
+
+    <string name="device_field_manufacturer">الشركة المصنّعة</string>
+    <string name="device_field_model">الموديل</string>
+    <string name="device_field_brand">Brand</string>
+    <string name="device_field_board">Board</string>
+    <string name="device_field_hardware">Hardware</string>
+    <string name="device_field_android_version">نسخة أندرويد</string>
+    <string name="device_field_sdk">SDK Level</string>
+    <string name="device_field_fingerprint">Fingerprint</string>
 </resources>

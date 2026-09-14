@@ -35,13 +35,13 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.devicex.app.navigation.AppNavHost
 import com.devicex.app.ui.theme.AppTheme
 import com.devicex.app.ui.theme.DeviceXTheme
 import kotlinx.coroutines.delay
@@ -74,7 +74,7 @@ fun DeviceXApp() {
     if (showSplash) {
         SplashScreen()
     } else {
-        com.devicex.app.screens.HomeScreen()
+        AppNavHost()
     }
 }
 

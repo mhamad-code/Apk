@@ -3,9 +3,7 @@ package com.devicex.app.screens
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,8 +20,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.devicex.app.R
 import com.devicex.app.components.DeviceXCard
+import com.devicex.app.components.InfoRow
+import com.devicex.app.navigation.Routes
 import com.devicex.app.services.BatteryInfoService
 import com.devicex.app.services.DeviceInfoService
 import com.devicex.app.services.MemoryInfoService
@@ -32,7 +33,7 @@ import com.devicex.app.ui.theme.AppTheme
 import com.devicex.app.utils.formatBytes
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController) {
     val context = LocalContext.current
     val colors = AppTheme.colors
 
@@ -81,11 +82,11 @@ fun HomeScreen() {
 
         item(span = { GridItemSpan(2) }) {
             DeviceXCard(modifier = Modifier.fillMaxWidth()) {
-                SummaryRow(stringResource(R.string.home_device_model), DeviceInfoService.getModel())
-                SummaryRow(stringResource(R.string.home_android_version), DeviceInfoService.getAndroidVersion())
-                SummaryRow(stringResource(R.string.home_ram), formatBytes(memoryInfo.totalBytes))
-                SummaryRow(stringResource(R.string.home_storage), formatBytes(storageInfo.totalBytes))
-                SummaryRow(
+                InfoRow(stringResource(R.string.home_device_model), DeviceInfoService.getModel())
+                InfoRow(stringResource(R.string.home_android_version), DeviceInfoService.getAndroidVersion())
+                InfoRow(stringResource(R.string.home_ram), formatBytes(memoryInfo.totalBytes))
+                InfoRow(stringResource(R.string.home_storage), formatBytes(storageInfo.totalBytes))
+                InfoRow(
                     stringResource(R.string.home_battery),
                     if (batteryPercent >= 0) "$batteryPercent%" else "Not available"
                 )
@@ -106,7 +107,12 @@ fun HomeScreen() {
             DeviceXCard(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
-                    Toast.makeText(context, sectionName, Toast.LENGTH_SHORT).show()
+                    if (sectionRes == R.string.section_device) {
+                        navController.navigate(Routes.DEVICE_DETAIL)
+                    } else {
+                        // باقي الأقسام لسا ما انبنت، بنعمل واحدة واحدة بالمراحل الجاية
+                        Toast.makeText(context, sectionName, Toast.LENGTH_SHORT).show()
+                    }
                 }
             ) {
                 Text(
@@ -117,19 +123,5 @@ fun HomeScreen() {
                 )
             }
         }
-    }
-}
-
-@Composable
-private fun SummaryRow(label: String, value: String) {
-    val colors = AppTheme.colors
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 6.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(text = label, color = colors.textSecondary, fontSize = 14.sp)
-        Text(text = value, color = colors.textPrimary, fontSize = 14.sp, fontWeight = FontWeight.Medium)
     }
 }

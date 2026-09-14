@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -79,7 +80,6 @@ fun HomeScreen() {
         }
 
         item(span = { GridItemSpan(2) }) {
-            // بطاقة الملخص بدون onClick -> غير قابلة للضغط، بس عرض بيانات
             DeviceXCard(modifier = Modifier.fillMaxWidth()) {
                 SummaryRow(stringResource(R.string.home_device_model), DeviceInfoService.getModel())
                 SummaryRow(stringResource(R.string.home_android_version), DeviceInfoService.getAndroidVersion())
@@ -103,7 +103,6 @@ fun HomeScreen() {
 
         items(sections) { sectionRes ->
             val sectionName = stringResource(sectionRes)
-            // onClick مؤقت هون بس لنختبر تأثير الضغط (3D) قبل ما نضيف Navigation فعلي بالمرحلة الجاية
             DeviceXCard(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {

@@ -4,6 +4,8 @@
     <string name="developer_name">محمد حمرة</string>
     <string name="version_label">الإصدار %1$s</string>
     <string name="back">رجوع</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
 
     <string name="home_device_model">الموديل</string>
     <string name="home_android_version">نسخة أندرويد</string>
@@ -40,4 +42,21 @@
     <string name="cpu_field_hardware">اسم المعالج</string>
     <string name="cpu_per_core_title">تردد كل نواة</string>
     <string name="cpu_core_label">النواة %1$d</string>
+
+    <string name="ram_field_usage_percent">نسبة الاستخدام: %.1f%%</string>
+    <string name="ram_field_total">الإجمالي</string>
+    <string name="ram_field_used">المستخدم</string>
+    <string name="ram_field_available">المتاح</string>
+    <string name="ram_field_threshold">حد الذاكرة المنخفضة</string>
+    <string name="ram_field_low_memory">وضع الذاكرة المنخفضة حاليًا</string>
+
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_theme_label">المظهر</string>
+    <string name="settings_theme_value">تلقائي (يتبع إعدادات الجهاز)</string>
+    <string name="settings_language_label">اللغة</string>
+    <string name="settings_language_value">العربية</string>
+    <string name="settings_version_label">إصدار التطبيق</string>
+    <string name="settings_about">من نحن</string>
+    <string name="settings_contact">تواصل معنا</string>
+    <string name="settings_terms">شروط الاستخدام</string>
 </resources>

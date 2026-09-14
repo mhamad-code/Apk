@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,9 +12,14 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -71,13 +77,27 @@ fun HomeScreen(navController: NavHostController) {
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         item(span = { GridItemSpan(2) }) {
-            Text(
-                text = "DeviceX",
-                color = colors.textPrimary,
-                fontSize = 26.sp,
-                fontWeight = FontWeight.Medium,
-                modifier = Modifier.padding(bottom = 12.dp)
-            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 12.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "DeviceX",
+                    color = colors.textPrimary,
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.Medium
+                )
+                IconButton(onClick = { navController.navigate(Routes.SETTINGS) }) {
+                    Icon(
+                        imageVector = Icons.Default.Settings,
+                        contentDescription = stringResource(R.string.settings_title),
+                        tint = colors.textPrimary
+                    )
+                }
+            }
         }
 
         item(span = { GridItemSpan(2) }) {
@@ -110,6 +130,7 @@ fun HomeScreen(navController: NavHostController) {
                     when (sectionRes) {
                         R.string.section_device -> navController.navigate(Routes.DEVICE_DETAIL)
                         R.string.section_cpu -> navController.navigate(Routes.CPU_DETAIL)
+                        R.string.section_ram -> navController.navigate(Routes.RAM_DETAIL)
                         else -> Toast.makeText(context, sectionName, Toast.LENGTH_SHORT).show()
                     }
                 }

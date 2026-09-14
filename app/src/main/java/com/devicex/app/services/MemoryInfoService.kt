@@ -6,7 +6,9 @@ import android.content.Context
 data class MemoryInfo(
     val totalBytes: Long,
     val availableBytes: Long,
-    val usedBytes: Long
+    val usedBytes: Long,
+    val lowMemoryThresholdBytes: Long,
+    val isLowMemory: Boolean
 )
 
 class MemoryInfoService(private val context: Context) {
@@ -17,6 +19,12 @@ class MemoryInfoService(private val context: Context) {
         val total = memInfo.totalMem
         val available = memInfo.availMem
         val used = total - available
-        return MemoryInfo(total, available, used)
+        return MemoryInfo(
+            totalBytes = total,
+            availableBytes = available,
+            usedBytes = used,
+            lowMemoryThresholdBytes = memInfo.threshold,
+            isLowMemory = memInfo.lowMemory
+        )
     }
 }

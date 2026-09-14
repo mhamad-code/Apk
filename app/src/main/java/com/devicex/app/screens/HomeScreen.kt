@@ -72,7 +72,7 @@ fun HomeScreen(navController: NavHostController) {
     ) {
         item(span = { GridItemSpan(2) }) {
             Text(
-                text = stringResource(R.string.app_name),
+                text = "DeviceX",
                 color = colors.textPrimary,
                 fontSize = 26.sp,
                 fontWeight = FontWeight.Medium,
@@ -88,7 +88,7 @@ fun HomeScreen(navController: NavHostController) {
                 InfoRow(stringResource(R.string.home_storage), formatBytes(storageInfo.totalBytes))
                 InfoRow(
                     stringResource(R.string.home_battery),
-                    if (batteryPercent >= 0) "$batteryPercent%" else stringResource(R.string.not_available)
+                    if (batteryPercent >= 0) "$batteryPercent%" else "Not available"
                 )
             }
         }
@@ -107,11 +107,10 @@ fun HomeScreen(navController: NavHostController) {
             DeviceXCard(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
-                    if (sectionRes == R.string.section_device) {
-                        navController.navigate(Routes.DEVICE_DETAIL)
-                    } else {
-                        // باقي الأقسام لسا ما انبنت، بنعمل واحدة واحدة بالمراحل الجاية
-                        Toast.makeText(context, sectionName, Toast.LENGTH_SHORT).show()
+                    when (sectionRes) {
+                        R.string.section_device -> navController.navigate(Routes.DEVICE_DETAIL)
+                        R.string.section_cpu -> navController.navigate(Routes.CPU_DETAIL)
+                        else -> Toast.makeText(context, sectionName, Toast.LENGTH_SHORT).show()
                     }
                 }
             ) {

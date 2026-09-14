@@ -16,8 +16,7 @@ data class AppColorScheme(
     val cardGradientBottom: Color,
     val primary: Color,
     val textPrimary: Color,
-    val textSecondary: Color,
-    val pressOverlay: Color
+    val textSecondary: Color
 )
 
 // 3 درجات بنفس عائلة الأزرق الغامق، بس متباعدة كفاية إنها تعطي إحساس عمق حقيقي
@@ -28,8 +27,7 @@ private val DarkAppColors = AppColorScheme(
     cardGradientBottom = Color(0xFF0C0E16),
     primary = Color(0xFFD4AF45),
     textPrimary = Color(0xFFFFFFFF),
-    textSecondary = Color(0xFF8A94A8),
-    pressOverlay = Color(0xFF000000)
+    textSecondary = Color(0xFF8A94A8)
 )
 
 // نفس الفكرة بالفاتح: أبيض -> رمادي فاتح مائل للبنفسجي -> رمادي أزرق فاتح
@@ -40,8 +38,7 @@ private val LightAppColors = AppColorScheme(
     cardGradientBottom = Color(0xFFDBDEEA),
     primary = Color(0xFFB8862E),
     textPrimary = Color(0xFF12151E),
-    textSecondary = Color(0xFF5B6478),
-    pressOverlay = Color(0xFF12151E)
+    textSecondary = Color(0xFF5B6478)
 )
 
 private val LocalAppColors = staticCompositionLocalOf { DarkAppColors }

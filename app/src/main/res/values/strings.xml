@@ -3,7 +3,6 @@
     <string name="app_name">DeviceX</string>
     <string name="developer_name">محمد حمرة</string>
     <string name="version_label">الإصدار %1$s</string>
-    <string name="not_available">غير متاح</string>
     <string name="back">رجوع</string>
 
     <string name="home_device_model">الموديل</string>
@@ -36,31 +35,9 @@
     <string name="device_field_sdk">SDK Level</string>
     <string name="device_field_fingerprint">Fingerprint</string>
 
-    <string name="settings_title">الإعدادات</string>
-    <string name="settings_theme_current">وضع الثيم الحالي</string>
-    <string name="settings_theme_dark">داكن</string>
-    <string name="settings_theme_light">فاتح</string>
-    <string name="settings_language">لغة التطبيق</string>
-    <string name="settings_language_arabic">العربية</string>
-    <string name="settings_language_english">English</string>
-    <string name="settings_about">من نحن</string>
-    <string name="settings_contact">تواصل معنا</string>
-    <string name="settings_terms">شروط الاستخدام</string>
-    <string name="settings_version">رقم الإصدار</string>
-
-    <string name="terms_title">شروط الاستخدام</string>
-    <string name="terms_section_overview">نطاق التطبيق</string>
-    <string name="terms_overview">يُستخدم DeviceX لعرض معلومات تقنية محلية عن الجهاز مثل الموديل ونسخة أندرويد والذاكرة والتخزين والبطارية عندما تكون هذه المعلومات متاحة عبر واجهات نظام أندرويد.</string>
-    <string name="terms_section_device_information">معلومات الجهاز</string>
-    <string name="terms_device_information">قد تظهر بعض الحقول كـ “غير متاح” إذا لم يسمح النظام أو الجهاز بقراءتها. لا يقوم التطبيق باختراق القيود أو تجاوز صلاحيات أندرويد لعرض معلومات إضافية.</string>
-    <string name="terms_section_privacy">الخصوصية والتتبع</string>
-    <string name="terms_privacy">يعرض التطبيق معلومات موجودة على جهازك فقط لأغراض العرض المحلي. لا يجمع بيانات شخصية ولا يرسل معلومات الجهاز إلى خوادم خارجية لأغراض التحليل أو التتبع.</string>
-    <string name="terms_section_permissions">الصلاحيات</string>
-    <string name="terms_permissions">يعتمد التطبيق على واجهات أندرويد المتاحة للتطبيقات العادية. أي معلومة لا يمكن الوصول إليها بدون صلاحية مناسبة لن يتم عرضها.</string>
-    <string name="terms_section_accuracy">دقة المعلومات</string>
-    <string name="terms_accuracy">قد تختلف بعض القيم حسب الشركة المصنّعة ونسخة أندرويد وطريقة عرض الجهاز للبيانات. المعلومات المعروضة لأغراض تقنية وليست تشخيصًا معتمدًا.</string>
-    <string name="terms_section_user_responsibility">مسؤولية الاستخدام</string>
-    <string name="terms_user_responsibility">أنت مسؤول عن استخدام المعلومات المعروضة وفق القوانين والسياسات المحلية. لا يُستخدم التطبيق لاتخاذ قرارات تعتمد على دقة مطلقة للمعلومات التقنية.</string>
-    <string name="terms_section_changes">تحديث الشروط</string>
-    <string name="terms_changes">قد يتم تحديث هذه الشروط عند إضافة خصائص جديدة أو تغيير طريقة عمل التطبيق. يُنصح بمراجعة هذه الصفحة دوريًا.</string>
+    <string name="cpu_field_cores">عدد الأنوية</string>
+    <string name="cpu_field_architecture">المعمارية (ABI)</string>
+    <string name="cpu_field_hardware">اسم المعالج</string>
+    <string name="cpu_per_core_title">تردد كل نواة</string>
+    <string name="cpu_core_label">النواة %1$d</string>
 </resources>

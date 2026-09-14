@@ -35,4 +35,16 @@
     <string name="device_field_android_version">نسخة أندرويد</string>
     <string name="device_field_sdk">SDK Level</string>
     <string name="device_field_fingerprint">Fingerprint</string>
+
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_theme_current">وضع الثيم الحالي</string>
+    <string name="settings_theme_dark">داكن</string>
+    <string name="settings_theme_light">فاتح</string>
+    <string name="settings_language">لغة التطبيق</string>
+    <string name="settings_language_arabic">العربية</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_about">من نحن</string>
+    <string name="settings_contact">تواصل معنا</string>
+    <string name="settings_terms">شروط الاستخدام</string>
+    <string name="settings_version">رقم الإصدار</string>
 </resources>

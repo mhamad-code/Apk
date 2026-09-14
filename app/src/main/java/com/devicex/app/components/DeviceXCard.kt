@@ -23,7 +23,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.devicex.app.ui.theme.AppTheme
 
@@ -97,7 +96,7 @@ fun DeviceXCard(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color.Black.copy(alpha = pressOverlayAlpha))
+                        .background(colors.pressOverlay.copy(alpha = pressOverlayAlpha))
                 )
             }
         }

@@ -72,7 +72,7 @@ fun HomeScreen(navController: NavHostController) {
     ) {
         item(span = { GridItemSpan(2) }) {
             Text(
-                text = "DeviceX",
+                text = stringResource(R.string.app_name),
                 color = colors.textPrimary,
                 fontSize = 26.sp,
                 fontWeight = FontWeight.Medium,
@@ -88,7 +88,7 @@ fun HomeScreen(navController: NavHostController) {
                 InfoRow(stringResource(R.string.home_storage), formatBytes(storageInfo.totalBytes))
                 InfoRow(
                     stringResource(R.string.home_battery),
-                    if (batteryPercent >= 0) "$batteryPercent%" else "Not available"
+                    if (batteryPercent >= 0) "$batteryPercent%" else stringResource(R.string.not_available)
                 )
             }
         }

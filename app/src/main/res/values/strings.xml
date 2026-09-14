@@ -3,6 +3,7 @@
     <string name="app_name">DeviceX</string>
     <string name="developer_name">محمد حمرة</string>
     <string name="version_label">الإصدار %1$s</string>
+    <string name="not_available">غير متاح</string>
     <string name="back">رجوع</string>
 
     <string name="home_device_model">الموديل</string>

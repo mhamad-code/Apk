@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.devicex.app.R
 import com.devicex.app.components.DeviceXCard
+import com.devicex.app.components.DeviceXIconButton
 import com.devicex.app.components.InfoRow
 import com.devicex.app.services.DeviceInfoService
 import com.devicex.app.ui.theme.AppTheme
@@ -41,13 +41,11 @@ fun DeviceDetailScreen(navController: NavHostController) {
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(onClick = { navController.popBackStack() }) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = stringResource(R.string.back),
-                    tint = colors.textPrimary
-                )
-            }
+            DeviceXIconButton(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = stringResource(R.string.back),
+                onClick = { navController.popBackStack() }
+            )
             Text(
                 text = stringResource(R.string.section_device),
                 color = colors.textPrimary,

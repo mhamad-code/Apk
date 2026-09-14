@@ -21,10 +21,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -44,6 +42,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.devicex.app.ui.theme.AppTheme
+import com.devicex.app.ui.theme.DeviceXTheme
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 
@@ -53,14 +53,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MaterialTheme(
-                colorScheme = darkColorScheme(
-                    background = Color(0xFF0A0C14),
-                    surface = Color(0xFF0A0C14),
-                    primary = Color(0xFFD4AF45)
-                )
-            ) {
-                Surface(color = Color(0xFF0A0C14)) {
+            DeviceXTheme {
+                Surface(color = AppTheme.colors.background) {
                     DeviceXApp()
                 }
             }
@@ -86,12 +80,14 @@ fun DeviceXApp() {
 
 @Composable
 fun SplashScreen() {
+    val colors = AppTheme.colors
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 Brush.radialGradient(
-                    colors = listOf(Color(0xFF1C2030), Color(0xFF0A0C14))
+                    colors = listOf(colors.cardGradientTop, colors.background)
                 )
             )
     ) {
@@ -114,7 +110,7 @@ fun SplashScreen() {
 
             Text(
                 text = stringResource(id = R.string.developer_name),
-                color = Color(0xFF8A94A8),
+                color = colors.textSecondary,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Normal
             )
@@ -156,13 +152,14 @@ private fun AppVersionText() {
     }
     Text(
         text = stringResource(id = R.string.version_label, versionName),
-        color = Color(0xFF5B6478),
+        color = AppTheme.colors.textSecondary,
         fontSize = 13.sp
     )
 }
 
 @Composable
 private fun StarField(modifier: Modifier = Modifier) {
+    val starColor = AppTheme.colors.textPrimary
     val starCount = 80
     val stars = remember {
         List(starCount) {
@@ -187,7 +184,7 @@ private fun StarField(modifier: Modifier = Modifier) {
             val y = yFrac * size.height
             val flicker = if (index % 3 == 0) twinkle else 1f
             drawCircle(
-                color = Color.White.copy(alpha = 0.6f * flicker),
+                color = starColor.copy(alpha = 0.6f * flicker),
                 radius = radius,
                 center = Offset(x, y)
             )

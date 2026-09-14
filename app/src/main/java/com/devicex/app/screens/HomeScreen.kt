@@ -1,5 +1,6 @@
 package com.devicex.app.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,16 +8,14 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -28,11 +27,14 @@ import com.devicex.app.services.BatteryInfoService
 import com.devicex.app.services.DeviceInfoService
 import com.devicex.app.services.MemoryInfoService
 import com.devicex.app.services.StorageInfoService
+import com.devicex.app.ui.theme.AppTheme
 import com.devicex.app.utils.formatBytes
 
 @Composable
 fun HomeScreen() {
     val context = LocalContext.current
+    val colors = AppTheme.colors
+
     val memoryService = remember { MemoryInfoService(context) }
     val storageService = remember { StorageInfoService() }
     val batteryService = remember { BatteryInfoService(context) }
@@ -61,22 +63,23 @@ fun HomeScreen() {
         columns = GridCells.Fixed(2),
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF0A0C14)),
+            .background(colors.background),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        item(span = { androidx.compose.foundation.lazy.grid.GridItemSpan(2) }) {
+        item(span = { GridItemSpan(2) }) {
             Text(
                 text = "DeviceX",
-                color = Color.White,
+                color = colors.textPrimary,
                 fontSize = 26.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.padding(bottom = 12.dp)
             )
         }
 
-        item(span = { androidx.compose.foundation.lazy.grid.GridItemSpan(2) }) {
+        item(span = { GridItemSpan(2) }) {
+            // بطاقة الملخص بدون onClick -> غير قابلة للضغط، بس عرض بيانات
             DeviceXCard(modifier = Modifier.fillMaxWidth()) {
                 SummaryRow(stringResource(R.string.home_device_model), DeviceInfoService.getModel())
                 SummaryRow(stringResource(R.string.home_android_version), DeviceInfoService.getAndroidVersion())
@@ -89,20 +92,27 @@ fun HomeScreen() {
             }
         }
 
-        item(span = { androidx.compose.foundation.lazy.grid.GridItemSpan(2) }) {
+        item(span = { GridItemSpan(2) }) {
             Text(
                 text = stringResource(R.string.home_sections_title),
-                color = Color(0xFF8A94A8),
+                color = colors.textSecondary,
                 fontSize = 14.sp,
                 modifier = Modifier.padding(top = 8.dp, bottom = 4.dp)
             )
         }
 
         items(sections) { sectionRes ->
-            DeviceXCard(modifier = Modifier.fillMaxWidth()) {
+            val sectionName = stringResource(sectionRes)
+            // onClick مؤقت هون بس لنختبر تأثير الضغط (3D) قبل ما نضيف Navigation فعلي بالمرحلة الجاية
+            DeviceXCard(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = {
+                    Toast.makeText(context, sectionName, Toast.LENGTH_SHORT).show()
+                }
+            ) {
                 Text(
-                    text = stringResource(sectionRes),
-                    color = Color.White,
+                    text = sectionName,
+                    color = colors.textPrimary,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Medium
                 )
@@ -113,13 +123,14 @@ fun HomeScreen() {
 
 @Composable
 private fun SummaryRow(label: String, value: String) {
+    val colors = AppTheme.colors
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 6.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(text = label, color = Color(0xFF8A94A8), fontSize = 14.sp)
-        Text(text = value, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Medium)
+        Text(text = label, color = colors.textSecondary, fontSize = 14.sp)
+        Text(text = value, color = colors.textPrimary, fontSize = 14.sp, fontWeight = FontWeight.Medium)
     }
 }

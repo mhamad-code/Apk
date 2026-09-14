@@ -9,36 +9,38 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-// كل الألوان اللي يستخدمها التطبيق مجمّعة هنا، بنسختين: غامق وفاتح
 data class AppColorScheme(
     val background: Color,
     val cardGradientTop: Color,
+    val cardGradientMid: Color,
     val cardGradientBottom: Color,
     val primary: Color,
     val textPrimary: Color,
     val textSecondary: Color
 )
 
+// 3 درجات بنفس عائلة الأزرق الغامق، بس متباعدة كفاية إنها تعطي إحساس عمق حقيقي
 private val DarkAppColors = AppColorScheme(
     background = Color(0xFF0A0C14),
-    cardGradientTop = Color(0xFF1E2330),
-    cardGradientBottom = Color(0xFF12151E),
+    cardGradientTop = Color(0xFF2A3150),
+    cardGradientMid = Color(0xFF181D2E),
+    cardGradientBottom = Color(0xFF0C0E16),
     primary = Color(0xFFD4AF45),
     textPrimary = Color(0xFFFFFFFF),
     textSecondary = Color(0xFF8A94A8)
 )
 
+// نفس الفكرة بالفاتح: أبيض -> رمادي فاتح مائل للبنفسجي -> رمادي أزرق فاتح
 private val LightAppColors = AppColorScheme(
     background = Color(0xFFF2F3F7),
     cardGradientTop = Color(0xFFFFFFFF),
-    cardGradientBottom = Color(0xFFE7E9F0),
+    cardGradientMid = Color(0xFFEDEFF7),
+    cardGradientBottom = Color(0xFFDBDEEA),
     primary = Color(0xFFB8862E),
     textPrimary = Color(0xFF12151E),
     textSecondary = Color(0xFF5B6478)
 )
 
-// CompositionLocal: طريقة بـ Compose نوصل فيها للألوان من أي مكان بالتطبيق
-// بدون ما نمررها يدويًا لكل Composable
 private val LocalAppColors = staticCompositionLocalOf { DarkAppColors }
 
 object AppTheme {
@@ -48,7 +50,6 @@ object AppTheme {
 
 @Composable
 fun DeviceXTheme(content: @Composable () -> Unit) {
-    // isSystemInDarkTheme() يقرأ إعداد النظام مباشرة، ويتحدث تلقائيًا لو المستخدم بدله
     val isDark = isSystemInDarkTheme()
     val appColors = if (isDark) DarkAppColors else LightAppColors
 

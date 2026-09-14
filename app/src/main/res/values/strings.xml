@@ -50,6 +50,21 @@
     <string name="ram_field_threshold">حد الذاكرة المنخفضة</string>
     <string name="ram_field_low_memory">وضع الذاكرة المنخفضة حاليًا</string>
 
+    <string name="storage_field_usage_percent">نسبة الاستخدام: %.1f%%</string>
+    <string name="storage_field_total">الإجمالي</string>
+    <string name="storage_field_used">المستخدم</string>
+    <string name="storage_field_available">المتاح</string>
+    <string name="storage_field_removable_present">يوجد بطاقة تخزين خارجية</string>
+    <string name="storage_field_removable_total">إجمالي البطاقة الخارجية</string>
+    <string name="storage_field_removable_available">المتاح بالبطاقة الخارجية</string>
+
+    <string name="battery_field_status">الحالة</string>
+    <string name="battery_field_health">الصحة</string>
+    <string name="battery_field_plugged">نوع الشحن</string>
+    <string name="battery_field_temperature">الحرارة</string>
+    <string name="battery_field_voltage">الجهد</string>
+    <string name="battery_field_technology">التقنية</string>
+
     <string name="settings_title">الإعدادات</string>
     <string name="settings_theme_label">المظهر</string>
     <string name="settings_theme_value">تلقائي (يتبع إعدادات الجهاز)</string>

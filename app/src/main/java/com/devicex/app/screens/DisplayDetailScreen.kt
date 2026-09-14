@@ -1,6 +1,5 @@
 package com.devicex.app.screens
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,21 +25,16 @@ import androidx.navigation.NavHostController
 import com.devicex.app.R
 import com.devicex.app.components.DeviceXCard
 import com.devicex.app.components.InfoRow
-import com.devicex.app.navigation.Routes
+import com.devicex.app.services.DisplayInfoService
 import com.devicex.app.ui.theme.AppTheme
 
 @Composable
-fun SettingsScreen(navController: NavHostController) {
+fun DisplayDetailScreen(navController: NavHostController) {
     val colors = AppTheme.colors
     val context = LocalContext.current
 
-    val versionName = remember {
-        try {
-            context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "?"
-        } catch (e: Exception) {
-            "?"
-        }
-    }
+    val displayService = remember { DisplayInfoService(context) }
+    val displayInfo = remember { displayService.getDisplayInfo() }
 
     Column(
         modifier = Modifier
@@ -60,7 +54,7 @@ fun SettingsScreen(navController: NavHostController) {
                 )
             }
             Text(
-                text = stringResource(R.string.settings_title),
+                text = stringResource(R.string.section_display),
                 color = colors.textPrimary,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Medium
@@ -72,32 +66,31 @@ fun SettingsScreen(navController: NavHostController) {
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             DeviceXCard(modifier = Modifier.fillMaxWidth()) {
-                InfoRow(stringResource(R.string.settings_theme_label), stringResource(R.string.settings_theme_value))
-                InfoRow(stringResource(R.string.settings_language_label), stringResource(R.string.settings_language_value))
-                InfoRow(stringResource(R.string.settings_version_label), versionName)
+                InfoRow(
+                    stringResource(R.string.display_field_resolution),
+                    "${displayInfo.widthPx} x ${displayInfo.heightPx}"
+                )
+                InfoRow(
+                    stringResource(R.string.display_field_diagonal),
+                    if (displayInfo.diagonalInches > 0f) {
+                        "%.1f\"".format(displayInfo.diagonalInches)
+                    } else {
+                        "Not available"
+                    }
+                )
             }
 
-            DeviceXCard(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = { navController.navigate(Routes.ABOUT) }
-            ) {
-                Text(text = stringResource(R.string.settings_about), color = colors.textPrimary, fontSize = 15.sp)
-            }
-
-            DeviceXCard(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = { navController.navigate(Routes.CONTACT) }
-            ) {
-                Text(text = stringResource(R.string.settings_contact), color = colors.textPrimary, fontSize = 15.sp)
-            }
-
-            DeviceXCard(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = {
-                    Toast.makeText(context, context.getString(R.string.settings_terms), Toast.LENGTH_SHORT).show()
-                }
-            ) {
-                Text(text = stringResource(R.string.settings_terms), color = colors.textPrimary, fontSize = 15.sp)
+            DeviceXCard(modifier = Modifier.fillMaxWidth()) {
+                InfoRow(stringResource(R.string.display_field_density), "${displayInfo.densityDpi} dpi")
+                InfoRow(stringResource(R.string.display_field_density_scale), "${displayInfo.densityScale}x")
+                InfoRow(
+                    stringResource(R.string.display_field_refresh_rate),
+                    if (displayInfo.refreshRateHz > 0f) {
+                        "%.0f Hz".format(displayInfo.refreshRateHz)
+                    } else {
+                        "Not available"
+                    }
+                )
             }
         }
     }

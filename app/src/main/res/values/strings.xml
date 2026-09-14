@@ -65,6 +65,12 @@
     <string name="battery_field_voltage">الجهد</string>
     <string name="battery_field_technology">التقنية</string>
 
+    <string name="display_field_resolution">الدقة</string>
+    <string name="display_field_diagonal">قطر الشاشة</string>
+    <string name="display_field_density">الكثافة</string>
+    <string name="display_field_density_scale">معامل الكثافة</string>
+    <string name="display_field_refresh_rate">معدل التحديث</string>
+
     <string name="settings_title">الإعدادات</string>
     <string name="settings_theme_label">المظهر</string>
     <string name="settings_theme_value">تلقائي (يتبع إعدادات الجهاز)</string>
@@ -74,4 +80,14 @@
     <string name="settings_about">من نحن</string>
     <string name="settings_contact">تواصل معنا</string>
     <string name="settings_terms">شروط الاستخدام</string>
+
+    <string name="about_app_section_title">عن التطبيق</string>
+    <string name="about_app_description">DeviceX تطبيق يعرض معلومات جهازك الحقيقية بدقة تامة، من المعالج والذاكرة إلى الشاشة والبطارية، بواجهة عصرية داكنة ذات طابع ثلاثي الأبعاد تجمع بين البساطة ووضوح المعلومة.</string>
+    <string name="about_developer_section_title">المطوّر</string>
+    <string name="about_developer_role">مطور واجهات أمامية وخلفية، مواقع وتطبيقات.</string>
+
+    <string name="contact_email_label">البريد الإلكتروني</string>
+    <string name="contact_github_label">GitHub</string>
+    <string name="contact_phone_label">رقم الهاتف</string>
+    <string name="contact_no_app_found">لا يوجد تطبيق مناسب على الجهاز لفتح هذا الرابط</string>
 </resources>

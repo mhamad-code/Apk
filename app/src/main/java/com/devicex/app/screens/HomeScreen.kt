@@ -133,6 +133,7 @@ fun HomeScreen(navController: NavHostController) {
                         R.string.section_ram -> navController.navigate(Routes.RAM_DETAIL)
                         R.string.section_storage -> navController.navigate(Routes.STORAGE_DETAIL)
                         R.string.section_battery -> navController.navigate(Routes.BATTERY_DETAIL)
+                        R.string.section_display -> navController.navigate(Routes.DISPLAY_DETAIL)
                         else -> Toast.makeText(context, sectionName, Toast.LENGTH_SHORT).show()
                     }
                 }
